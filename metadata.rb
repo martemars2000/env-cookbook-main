@@ -1,4 +1,4 @@
-name 'minginx'
+name 'env-cookbook-main'
 maintainer 'The Authors'
 maintainer_email 'you@example.com'
 license 'All Rights Reserved'
