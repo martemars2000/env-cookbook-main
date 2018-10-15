@@ -48,22 +48,17 @@ template "/etc/nginx/sites-enabled/default" do
     notifies :reload, "service[nginx]"
   end
 
-directory "/var/www/html" do
-    mode "0777"
-    recursive true
-  end
-
-#   execute 'Enable permissons' do
-#     command 'sudo chmod -R 777 *'
-#     action :run
-#   end
-
-#   execute 'Composer Update' do
-#     command 'composer update'
-#     action :run
-#   end
-
   execute 'Composer Install' do
     command 'composer install -d=/var/www/html/'
+    action :run
+  end
+
+# directory "/var/www/html" do
+#     mode "0777"
+#     recursive true
+#   end
+
+  execute 'Enable permissons' do
+    command 'sudo chmod -R 777 /var/www/html/'
     action :run
   end
