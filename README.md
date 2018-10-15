@@ -7,7 +7,7 @@ Base cookbook used to do the initial laravel environment setup.
 
 * [nginx](https://www.nginx.com/resources/wiki/)
 * [php](http://php.net/downloads.php#v7.0.32) (inlcudes php-fpm, php-mbstring, php-mcrypt, php-dom, php-zip)
-* [composer]https://getcomposer.org/doc/)
+* [composer](https://getcomposer.org/doc/)
 
 ### Slight setup
 
