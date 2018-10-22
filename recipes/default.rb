@@ -4,6 +4,16 @@
 #
 # Copyright:: 2018, The Authors, All Rights Reserved.
 
+execute 'Add new php repository' do
+    command 'sudo add-apt-repository ppa:ondrej/php'
+    action :run
+end
+
+execute 'Update ubuntu repositories' do
+    command 'sudo apt-get update'
+    action :run
+end
+
 package 'git'
 package 'tree'
 
@@ -13,29 +23,41 @@ end
 
 service 'nginx' do
     action [ :enable, :start ]
-  end
+end
 
-package 'php' do
+package 'php7.1' do
     action :install
 end
 
-package 'php-fpm' do
+package 'php7.1-common' do
     action :install
 end
 
-package 'php-mbstring' do
+package 'php7.1-curl' do
     action :install
 end
 
-package 'php-mcrypt' do
+package 'php7.1-xml' do
     action :install
 end
 
-package 'php-dom' do
+package 'php7.1-zip' do
     action :install
 end
 
-package 'php-zip' do
+package 'php7.1-gd' do
+    action :install
+end
+
+package 'php7.1-mbstring' do
+    action :install
+end
+
+package 'php7.1-fpm' do
+    action :install
+end
+
+package 'php7.1-mcrypt' do
     action :install
 end
 
@@ -46,19 +68,19 @@ end
 template "/etc/nginx/sites-enabled/default" do   
     source "default"
     notifies :reload, "service[nginx]"
-  end
+end
 
-  execute 'Composer Install' do
+execute 'Composer Install' do
     command 'composer install -d=/var/www/html/'
     action :run
-  end
+end
 
 # directory "/var/www/html" do
 #     mode "0777"
 #     recursive true
-#   end
+# end
 
-  execute 'Enable permissons' do
-    command 'sudo chmod -R 777 /var/www/html/'
-    action :run
-  end
+# execute 'Enable permissons' do
+#     command 'sudo chmod -R 777 /var/www/html/'
+#     action :run
+# end
